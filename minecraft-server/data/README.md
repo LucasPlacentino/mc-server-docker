@@ -1,0 +1,1 @@
+# Server's data folder
