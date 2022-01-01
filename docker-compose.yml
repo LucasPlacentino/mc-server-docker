@@ -26,7 +26,7 @@ services:
       # Overrides the server.properties file every time the container is restarted :
 #      - OVERRIDE_SERVER_PROPERTIES = true
       # Message of the day (appears below the name of the server in the client's servers list) :
-      - MOTD = "§4§kDUCKLINGS§e§rThe Cutest Duck!§4§kDUCKLINGS§r\n§oGin et Rhum Brun FTW"
+      - MOTD = "§4§kDUCKLINGS§e§lThe Cutest Duck!§4§kDUCKLINGS§r\n§oDocker MC Server"
       # Icon of the server (appears in the client's servers list) :
       - ICON = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Neck_of_white_duck..jpg/640px-Neck_of_white_duck..jpg"
       # Overrides the server's icon every time the container is restarted :
@@ -37,7 +37,7 @@ services:
 #      - WHITELIST_FILE = "/extra/whitelist.json"
       # Whitelisted players (+ the file if previous line uncommented) :
 #      - WHITELIST = 'ticccco,zandies'
-      # Activates the whitelist :
+      # Kicks current connected players that aren't in the whitelist(?) :
       - ENFORCE_WHITELIST = 'TRUE'
       # Overrides the whitelist every time the container is restarted :
 #      - OVERRIDE_WHITELIST = 'TRUE'
