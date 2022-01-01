@@ -1,0 +1,79 @@
+version: '3.9'
+
+services:
+  minecraft-server:
+    # make sure to use the correct tag for the container image for the correct java version (x86, ARM), here java8 multiarch(for ARM because of my OCI VM) :
+    image: itzg/minecraft-server:java8-multiarch
+    ports:
+      # Standard Minecraft server port 25565 :
+      - 25565:25565
+    volumes:
+      # Defined named volumes for the container, not necessary :
+      - "./minecraft-server/data:/data"
+      - "./minecraft-server/config:/config"
+      - "./minecraft-server/world:/worlds/world"
+      - "./minecraft-server/plugins:/plugins"
+#      - "./minecraft-server/mods:/mods"
+#      - "./minecraft-server/modpacks:/modpacks"
+    environment:
+      # EULA: TRUE is always necessary
+      - EULA = "TRUE"
+      # Minecraft version: LATEST; 1.8.1; etc. :
+#      - VERSION = "LATEST"
+      - VERSION = '1.8.1'
+      # Choose your type: comment the line for vanilla, other wise: PAPER; FORGE; FABRIC; (FTBA?); etc. :
+      - TYPE = 'PAPER'
+      # Overrides the server.properties file every time the container is restarted :
+#      - OVERRIDE_SERVER_PROPERTIES = true
+      # Message of the day (appears below the name of the server in the client's servers list) :
+      - MOTD = "§4§kDUCKLINGS§e§rThe Cutest Duck!§4§kDUCKLINGS§r\n§oGin et Rhum Brun FTW"
+      # Icon of the server (appears in the client's servers list) :
+      - ICON = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Neck_of_white_duck..jpg/640px-Neck_of_white_duck..jpg"
+      # Overrides the server's icon every time the container is restarted :
+      - OVERRIDE_ICON = 'TRUE'
+      # Difficulty: peaceful; easy; medium; hard :
+      - DIFFICULTY = 'medium'
+      # Path to the whitelisted players names file :
+#      - WHITELIST_FILE = "/extra/whitelist.json"
+      # Whitelisted players (+ the file if previous line uncommented) :
+#      - WHITELIST = 'ticccco,zandies'
+      # Activates the whitelist :
+      - ENFORCE_WHITELIST = 'TRUE'
+      # Overrides the whitelist every time the container is restarted :
+#      - OVERRIDE_WHITELIST = 'TRUE'
+      # Enables the whitelist :
+      - ENABLE_WHITELIST = 'TRUE'
+      # OPed players names :
+      - OPS = 'ticccco'
+      # Max player capacity :
+      - MAX_PLAYERS = 20
+      # Max world size (radius or diameter?) :
+      - MAX_WORLD_SIZE = 10000
+      # Radius of the spawn protected area :
+      - SPAWN_PROTECTION = 0
+      # Server side view distance :
+      - VIEW_DISTANCE = 16
+      # Seed :
+      - SEED = "ULBFTW"
+      # Disables the flight kick, used for mods or cheats :
+      - ALLOW_FLIGHT = 'TRUE'
+      # Used by a plugin :
+      - SERVER_NAME = "Cute ducks here"
+#      - MEMORY = '20G'
+      # Maximum heap memory used by the JVM (typically less than 75% of the server's memory) :
+      - MAX_MEMORY = '10G'
+      - EXEC_DIRECTLY = true
+      # Timezone :
+      - TZ = 'Europe/Amsterdam'
+        # Optimization used for Virtualized instances of servers, i.e in the cloud :
+      - TUNE_VIRTUALIZED = 'TRUE'
+    # Container memory limit
+    mem_limit: 20g
+    # Container reserved memory
+    mem_reservation: 12g
+    # needed for reasons i don't remmeber :
+    tty: true
+    # needed for reasons i don't remmeber :
+    stdin_open: true
+    # Automatically restarts the container unless you manually stopped it :
+    restart: unless-stopped
