@@ -4,7 +4,7 @@ Personal Minecraft server set up using docker-compose _(tested in an Oracle Clou
 
 #### _WIP_  
 
-- [ ] Testing ont the OCI insatnce[^1]
+- [ ] Testing on the OCI insatnce[^1]
 - [X] yml docker-compose file
 - [ ] Write the README
 - [ ] Just play
