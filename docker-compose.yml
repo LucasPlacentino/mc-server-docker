@@ -3,7 +3,7 @@ version: '3.9'
 services:
   minecraft-server:
     # make sure to use the correct tag for the container image for the correct java version (x86, ARM), here java8 multiarch(for ARM because of my OCI VM) :
-    image: itzg/minecraft-server:java8-multiarch
+    image: itzg/minecraft-server:java17
     ports:
       # Standard Minecraft server port 25565 :
       - 25565:25565
@@ -17,60 +17,60 @@ services:
 #      - "./minecraft-server/modpacks:/modpacks"
     environment:
       # EULA: TRUE is always necessary
-      - EULA = "TRUE"
+      - EULA=TRUE
       # Minecraft version: LATEST; 1.8.1; etc. :
 #      - VERSION = "LATEST"
-      - VERSION = '1.8.1'
+      - VERSION=1.19.2
       # Choose your type: comment the line for vanilla, other wise: PAPER; FORGE; FABRIC; (FTBA?); etc. :
-      - TYPE = 'PAPER'
+      #- TYPE=PAPER
       # Overrides the server.properties file every time the container is restarted :
-#      - OVERRIDE_SERVER_PROPERTIES = true
+#      - OVERRIDE_SERVER_PROPERTIES=TRUE
       # Message of the day (appears below the name of the server in the client's servers list) :
-      - MOTD = "§4§kDUCKLINGS§e§lThe Cutest Duck!§4§kDUCKLINGS§r\n§oDocker MC Server"
+      - MOTD=§4§kDUCKLINGS§e§lThe Cutest Duck!§4§kDUCKLINGS§r\n§oDocker MC Server
       # Icon of the server (appears in the client's servers list) :
-      - ICON = "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Neck_of_white_duck..jpg/640px-Neck_of_white_duck..jpg"
+      - ICON=https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Neck_of_white_duck..jpg/640px-Neck_of_white_duck..jpg
       # Overrides the server's icon every time the container is restarted :
-      - OVERRIDE_ICON = 'TRUE'
+      - OVERRIDE_ICON=TRUE
       # Difficulty: peaceful; easy; medium; hard :
-      - DIFFICULTY = 'medium'
+      - DIFFICULTY=medium
       # Path to the whitelisted players names file :
-#      - WHITELIST_FILE = "/extra/whitelist.json"
+#      - WHITELIST_FILE=/extra/whitelist.json
       # Whitelisted players (+ the file if previous line uncommented) :
-#      - WHITELIST = 'ticccco,zandies'
+#      - WHITELIST=ticccco,zandies
       # Kicks current connected players that aren't in the whitelist(?) :
-      - ENFORCE_WHITELIST = 'TRUE'
+      - ENFORCE_WHITELIST=TRUE
       # Overrides the whitelist every time the container is restarted :
-#      - OVERRIDE_WHITELIST = 'TRUE'
+#      - OVERRIDE_WHITELIST=TRUE
       # Enables the whitelist :
-      - ENABLE_WHITELIST = 'TRUE'
+      - ENABLE_WHITELIST=TRUE
       # OPed players names :
-      - OPS = 'ticccco'
+#      - OPS=ticccco
       # Max player capacity :
-      - MAX_PLAYERS = 20
+      - MAX_PLAYERS=20
       # Max world size (radius or diameter?) :
-      - MAX_WORLD_SIZE = 10000
+      - MAX_WORLD_SIZE=25000
       # Radius of the spawn protected area :
-      - SPAWN_PROTECTION = 0
+      - SPAWN_PROTECTION=0
       # Server side view distance :
-      - VIEW_DISTANCE = 16
+      - VIEW_DISTANCE=16
       # Seed :
-      - SEED = "ULBFTW"
+      - SEED=ULBFTW
       # Disables the flight kick, used for mods or cheats :
-      - ALLOW_FLIGHT = 'TRUE'
+      - ALLOW_FLIGHT=TRUE
       # Used by a plugin :
-      - SERVER_NAME = "Cute ducks here"
-#      - MEMORY = '20G'
+      - SERVER_NAME=Cute ducks here
+#      - MEMORY=20G
       # Maximum heap memory used by the JVM (typically less than 75% of the server's memory) :
-      - MAX_MEMORY = '10G'
-      - EXEC_DIRECTLY = true
+      - MAX_MEMORY=16G
+      - EXEC_DIRECTLY=TRUE
       # Timezone :
-      - TZ = 'Europe/Amsterdam'
+      - TZ=Europe/Amsterdam
         # Optimization used for Virtualized instances of servers, i.e in the cloud :
-      - TUNE_VIRTUALIZED = 'TRUE'
+      - TUNE_VIRTUALIZED=TRUE
     # Container memory limit
-    mem_limit: 20g
+    mem_limit: 16g
     # Container reserved memory
-    mem_reservation: 12g
+    mem_reservation: 4g
     # needed for reasons i don't remmeber :
     tty: true
     # needed for reasons i don't remmeber :
