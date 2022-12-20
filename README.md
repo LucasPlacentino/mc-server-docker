@@ -4,12 +4,12 @@ Personal Minecraft server set up using docker-compose _(tested in an Oracle Clou
 
 #### _WIP_  
 
-- [X] Testing on the OCI instance[^1]
+- [X] Testing on the OCI instance
 - [X] yml docker-compose file
-- [ ] Write the README
-- [ ] Just play
+- [ ] Write the README[^1]
+- [X] Just play
 
-[^1]: Testing footnotes
+[^1]: Everything is already explained in https://github.com/itzg/docker-minecraft-server
 
 ### Table of contents
 
@@ -19,33 +19,54 @@ Personal Minecraft server set up using docker-compose _(tested in an Oracle Clou
    * [Running](#running)
       * [Starting the server](#starting-the-server)
       * [Execute Minecraft commands](#execute-minecraft-commands)
+      * [Stopping the server](#stopping-the-server)
 
 <!--te-->
 
 ## Setup
+You should have **Docker** (with `docker-compose`, or not if you use the newer `docker compose`) installed on your server.  
+
+Copy the `docker-compose.yml` file (or git clone this repo) in a folder (i.e `mc-server-docker` folder: `mkdir mc-server-docker`).
 
 ### Opening ports
-Open port **25565** tcp **and** udp in the firewall of the VNIC (from 0.0.0.0/0)
+Open port **25565** tcp **and** udp in the firewall of the subnet of the instance's VNIC, (from 0.0.0.0/0).
 
 ## Running
 
 ### Starting the server
-`cd` to the mc-server-docker folder (where the docker-compose.yml file is situated) and  
+Make sure you are in the folder where the .yml is located (`cd` to the mc-server-docker directory) and : 
 
 ```shell
-docker-compose up -d
+sudo docker-compose up -d
 ```
+(`-d` makes sure the container is running in "detached" mode, meaning you can still interact with your linux machine when the coantiner is running, it basically makes the container run in the background)
+
+**The server is now running!**  
+
+You can check the logs using `sudo docker logs -f minecraft-server`,  
+where `minecraft-server` is the name of the container (`container_name` in the docker-compose.yml).  
+(`-f` is for "following" the logs, you can exit by pressing _CTRL+C_)
+
+The minecraft server's files can be found in the `minecraft-server` folder within the `mc-server-docker` directory, if you want to download or barckup them up, or edit the server.properties directly (only after running the docker container for the first time, as they are generated).
   
 ### Execute Minecraft commands
 If rcon is enabled (default):  
 
 ```shell
-docker exec minecraft-server rcon-cli <COMMAND>
+sudo docker exec minecraft-server rcon-cli <COMMAND>
 ```
   
 > If rcon is disabled:  
 > 
 > ```shell
-> docker exec minecraft-server mc-send-to-console <COMMAND>  
+> sudo docker exec minecraft-server mc-send-to-console <COMMAND>  
 > ```
 >
+
+where `<COMMAND>` is the minecraft command executed by the server. 
+
+### Stopping the server
+To stop the server simply execute, in the directory where the `docker-compose.yml` is located, 
+```shell
+sudo docker-compose down
+```
