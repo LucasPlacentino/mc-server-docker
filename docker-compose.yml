@@ -4,7 +4,7 @@ services:
   minecraft-server:
     # make sure to use the correct tag for the container image for the correct java version (x86 - amd64, ARM - arm64, armv7)
     # for correct java ver, see https://github.com/itzg/docker-minecraft-server#running-minecraft-server-on-different-java-version
-    image: itzg/minecraft-server:java17
+    image: itzg/minecraft-server:java17-jdk
     container_name: minecraft-server
     ports:
       # Standard Minecraft server port 25565 :
@@ -49,7 +49,7 @@ services:
 #      - OPS=yourminecraftname,anotherminecraftname
       # Max player capacity :
       - MAX_PLAYERS=20
-      # Max world size (radius, or diameter?) :
+      # Max world size (radius) :
       - MAX_WORLD_SIZE=25000
       # Radius of the spawn protected area :
       - SPAWN_PROTECTION=0
