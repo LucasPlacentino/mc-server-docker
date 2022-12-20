@@ -2,7 +2,8 @@ version: '3.9'
 
 services:
   minecraft-server:
-    # make sure to use the correct tag for the container image for the correct java version (x86, ARM), here java8 multiarch(for ARM because of my OCI VM) :
+    # make sure to use the correct tag for the container image for the correct java version (x86 - amd64, ARM - arm64, armv7)
+    # for correct java ver, see https://github.com/itzg/docker-minecraft-server#running-minecraft-server-on-different-java-version
     image: itzg/minecraft-server:java17
     ports:
       # Standard Minecraft server port 25565 :
@@ -16,14 +17,14 @@ services:
 #      - "./minecraft-server/mods:/mods"
 #      - "./minecraft-server/modpacks:/modpacks"
     environment:
-      # EULA: TRUE is always necessary
+      # EULA: Please read Minecraft's servers EULA, then set this to TRUE as it is always necessary :
       - EULA=TRUE
       # Minecraft version: LATEST; 1.8.1; etc. :
 #      - VERSION = "LATEST"
       - VERSION=1.19.2
-      # Choose your type: comment the line for vanilla, other wise: PAPER; FORGE; FABRIC; (FTBA?); etc. :
-      #- TYPE=PAPER
-      # Overrides the server.properties file every time the container is restarted :
+      # Choose your type: comment the line for vanilla, other wise: PAPER; FORGE; FABRIC; FTBA; CURSEFORGE; etc. :
+      #- TYPE=CURSEFORGE
+      # Overrides the server.properties file every time the container is restarted : (not recommended)
 #      - OVERRIDE_SERVER_PROPERTIES=TRUE
       # Message of the day (appears below the name of the server in the client's servers list) :
       - MOTD=§4§kDUCKLINGS§e§lThe Cutest Duck!§4§kDUCKLINGS§r\n§oDocker MC Server
@@ -36,18 +37,18 @@ services:
       # Path to the whitelisted players names file :
 #      - WHITELIST_FILE=/extra/whitelist.json
       # Whitelisted players (+ the file if previous line uncommented) :
-#      - WHITELIST=ticccco,zandies
+#      - WHITELIST=yourminecraftname,anotherminecraftname
       # Kicks current connected players that aren't in the whitelist(?) :
       - ENFORCE_WHITELIST=TRUE
-      # Overrides the whitelist every time the container is restarted :
+      # Overrides the whitelist every time the container is restarted : (not recommended)
 #      - OVERRIDE_WHITELIST=TRUE
       # Enables the whitelist :
       - ENABLE_WHITELIST=TRUE
       # OPed players names :
-#      - OPS=ticccco
+#      - OPS=yourminecraftname,anotherminecraftname
       # Max player capacity :
       - MAX_PLAYERS=20
-      # Max world size (radius or diameter?) :
+      # Max world size (radius, or diameter?) :
       - MAX_WORLD_SIZE=25000
       # Radius of the spawn protected area :
       - SPAWN_PROTECTION=0
@@ -61,19 +62,19 @@ services:
       - SERVER_NAME=Cute ducks here
 #      - MEMORY=20G
       # Maximum heap memory used by the JVM (typically less than 75% of the server's memory) :
-      - MAX_MEMORY=16G
+#      - MAX_MEMORY=6G
       - EXEC_DIRECTLY=TRUE
-      # Timezone :
+      # Timezone, change accordingly :
       - TZ=Europe/Amsterdam
         # Optimization used for Virtualized instances of servers, i.e in the cloud :
       - TUNE_VIRTUALIZED=TRUE
     # Container memory limit
-    mem_limit: 16g
+    mem_limit: 8g
     # Container reserved memory
-    mem_reservation: 4g
+    mem_reservation: 2g
     # needed for reasons i don't remmeber :
     tty: true
     # needed for reasons i don't remmeber :
     stdin_open: true
-    # Automatically restarts the container unless you manually stopped it :
+    # Automatically restarts the container unless you manually stopped it (can also be: always, never) :
     restart: unless-stopped
