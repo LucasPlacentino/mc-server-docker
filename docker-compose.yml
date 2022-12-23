@@ -33,8 +33,8 @@ services:
       - ICON=https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Neck_of_white_duck..jpg/640px-Neck_of_white_duck..jpg
       # Overrides the server's icon every time the container is restarted :
       - OVERRIDE_ICON=TRUE
-      # Difficulty: peaceful; easy; medium; hard :
-      - DIFFICULTY=medium
+      # Difficulty: peaceful; easy; normal; hard :
+      - DIFFICULTY=normal
       # Path to the whitelisted players names file :
 #      - WHITELIST_FILE=/extra/whitelist.json
       # Whitelisted players (+ the file if previous line uncommented) :
