@@ -19,7 +19,7 @@ services:
 #      - "./minecraft-server/modpacks:/modpacks"
     environment:
       # EULA: Please read Minecraft's servers EULA, then set this to TRUE as it is always necessary :
-      - EULA=TRUE
+      - EULA=
       # Minecraft version: LATEST; 1.8.1; etc. :
 #      - VERSION = "LATEST"
       - VERSION=1.19.2
