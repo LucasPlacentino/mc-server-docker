@@ -24,9 +24,9 @@ Personal Minecraft server set up using docker-compose _(tested in an Oracle Clou
 <!--te-->
 
 ## Setup
-You should have **Docker** (with `docker-compose`, or not if you use the newer `docker compose`) installed on your server.  
+You should have [**Docker**](https://docs.docker.com/) (with `docker-compose`, or not if you use the newer `docker compose`) installed on your server.  
 
-Copy the `docker-compose.yml` file (or git clone this repo) in a folder (i.e `mc-server-docker` folder: `mkdir mc-server-docker`).
+Copy the [`docker-compose.yml`](docker-compose.yml) file (or git clone this repo) in a folder (i.e _mc-server-docker_ folder: `mkdir mc-server-docker`).
 
 ### Opening ports
 Open port **25565** tcp **and** udp in the firewall of the subnet of the instance's VNIC, (from 0.0.0.0/0).
