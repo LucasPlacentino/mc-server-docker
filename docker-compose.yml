@@ -10,7 +10,7 @@ services:
       # Standard Minecraft server port 25565 :
       - 25565:25565
     volumes:
-      # Defined named volumes for the container, not necessary :
+      # Defined named volumes for the container, not necessary if you don't want it saved on the host machine filesystem (only in the container) :
       - "./minecraft-server/data:/data"
       - "./minecraft-server/config:/config"
       - "./minecraft-server/world:/worlds/world"
@@ -48,7 +48,7 @@ services:
       # OPed players names :
 #      - OPS=yourminecraftname,anotherminecraftname
       # Max player capacity :
-      - MAX_PLAYERS=20
+      - MAX_PLAYERS=42
       # Max world size (radius) :
       - MAX_WORLD_SIZE=25000
       # Radius of the spawn protected area :
@@ -63,7 +63,7 @@ services:
       - SERVER_NAME=Cute ducks here
 #      - MEMORY=20G
       # Maximum heap memory used by the JVM (typically less than 75% of the server's memory) :
-#      - MAX_MEMORY=6G
+      - MAX_MEMORY=6G
       - EXEC_DIRECTLY=TRUE
       # Timezone, change accordingly :
       - TZ=Europe/Amsterdam
@@ -73,9 +73,7 @@ services:
     mem_limit: 8g
     # Container reserved memory
     mem_reservation: 2g
-    # needed for reasons i don't remmeber :
     tty: true
-    # needed for reasons i don't remmeber :
     stdin_open: true
     # Automatically restarts the container unless you manually stopped it (can also be: always, never) :
     restart: unless-stopped
