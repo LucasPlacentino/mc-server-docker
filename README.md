@@ -68,5 +68,15 @@ where `<COMMAND>` is the minecraft command executed by the server.
 ### Stopping the server
 To stop the server simply execute, in the directory where the `docker-compose.yml` is located, 
 ```shell
-sudo docker-compose down
+sudo docker stop minecraft-server
+```
+
+And to start it again simply do:
+```shell
+sudo docker start minecraft-server
+```
+
+### Restarting the server
+```shell
+sudo docker restart minecraft-server
 ```
